@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mon-service-monitor
+  labels:
+    release: prometheus-community 
+spec:
+  selector:
+    matchLabels:
+      app: mon-application
+  endpoints:
+  - port: web
+

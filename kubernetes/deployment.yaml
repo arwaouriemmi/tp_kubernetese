@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: mon-application
+  template:
+    metadata:
+      labels:
+        app: mon-application
+    spec:
+      containers:
+      - name: nodejs-app
+        image: arwaoueriemmi/app_image:v5.0 
+        ports:
+        - containerPort: 3000  

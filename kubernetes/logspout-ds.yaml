@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  labels:
+    name: logspout
+  name: logspout
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: logspout
+  template:
+    metadata:
+      labels:
+        name: logspout
+    spec:
+      containers:
+      - env:
+        - name: SYSLOG_TAG
+          value: '{{ index .Container.Config.Labels "io.kubernetes.pod.namespace"
+            }}[{{ index .Container.Config.Labels "io.kubernetes.pod.name" }}]'
+        - name: SYSLOG_HOSTNAME
+          value: '{{ index .Container.Config.Labels "io.kubernetes.container.name"
+            }}'
+        image: mdsol/logspout:latest
+        imagePullPolicy: IfNotPresent
+        args:
+        - "cloudwatch://auto"
+        name: logspout
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: 150m
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: log
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /var/run/docker.sock
+          type: ""
+        name: log

@@ -1,0 +1,7 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: first-pool
+spec:
+  addresses:
+  - 172.17.0.100-172.17.0.110
