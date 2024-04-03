@@ -2,6 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: mon-service-monitor
+  namespace: jenkins
   labels:
     release: prometheus-community 
 spec:
