@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   requestCounter.labels(req.method, req.path, res.statusCode.toString()).inc();
   
   // Répondre avec un message
-  res.send('Hello World!');
+  res.send('Hello World <3 <3 <3!');
 });
 
 // Exposer les métriques pour que Prometheus les récupère
