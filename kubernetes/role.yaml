@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: jenkins
+  name: jenkins-apply-role
+rules:
+- apiGroups: [""]
+  resources: ["*"]
+  verbs: ["apply", "create", "get", "list", "watch", "delete"]

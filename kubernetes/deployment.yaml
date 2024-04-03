@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: arwaoueriemmi/app_image:v5.0 
+        image: arwaoueriemmi/app_image:v101.0 
         ports:
         - containerPort: 3000  
